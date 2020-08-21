@@ -1,0 +1,35 @@
+<div class="shadow-sm bg-white rounded">
+  <div class="card-header">
+    <h1>My Boards</h1>
+    <span>Here you can find all boards you are a member of</span>
+  </div>
+  <div class="row p-3">
+    <div class="col-md-2 d-flex flex-column order-md-2">
+      <button [routerLink]="'create'" class="btn btn-outline-primary mb-1">Create new board</button>
+      <button [routerLink]="'../invitations'" class="btn btn-outline-primary mb-1 d-none d-md-block">Browse invitations</button>
+    </div>
+    <div class="col-md-10 order-md-1">
+      <table class="table">
+        <thead class="thead-light">
+        <th scope="col">Board name</th>
+        <th scope="col">Board description</th>
+        <th scope="col"></th>
+        </thead>
+        <tbody>
+        <ng-container *ngFor="let board of boards">
+          <tr>
+            <td>{{board.name}}</td>
+            <td>{{board.description}}</td>
+            <td>
+              <a [routerLink]="board.id">
+                <button class="btn btn-outline-secondary" >Open</button>
+              </a>
+            </td>
+          </tr>
+        </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+

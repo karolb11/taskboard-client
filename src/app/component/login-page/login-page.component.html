@@ -1,0 +1,14 @@
+<div class="container mt-5 d-flex justify-content-center">
+  <div class="form-signin col-xs-12 col-sm-8 col-lg-4">
+    <h3 class="form-signin-heading">Sign in to Taskboard</h3>
+    <p>
+      <label for="usernameOrEmail" class="sr-only">Username</label>
+      <input [(ngModel)]="usernameOrEmail" type="text" id="usernameOrEmail" name="usernameOrEmail" class="form-control" placeholder="Username or Email" required="" autofocus="">
+    </p>
+    <p>
+      <label for="password" class="sr-only">Password</label>
+      <input [(ngModel)]="password" type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+    </p>
+    <button (click)="signIn()" class="btn btn-lg btn-primary btn-block">Sign in</button>
+  </div>
+</div>

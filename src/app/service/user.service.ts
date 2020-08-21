@@ -20,4 +20,13 @@ export class UserService {
     };
     return this.httpClient.get<Array<User>>(url, options);
   }
+  getBoardMembers(boardId: number) {
+    const url = `${Consts.API_URL}/board/${boardId}/members`;
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.get<Array<User>>(url, options);
+  }
 }

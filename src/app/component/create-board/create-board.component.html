@@ -1,0 +1,26 @@
+<div class="shadow-sm bg-white rounded">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <h1>Create new board</h1>
+      <span>Fill up fields below to create a new board for you team</span>
+    </div>
+    <div>
+      <button [routerLink]="'../'" class="btn btn-secondary">Back</button>
+    </div>
+  </div>
+  <div class="p-3">
+    <div class="form-group">
+      <label for="name">Board's name</label>
+      <input [(ngModel)]="boardName" type="text" class="form-control" id="name" placeholder="Name of your new board">
+    </div>
+    <div class="form-group">
+      <label for="description">Board's description</label>
+      <textarea [(ngModel)]="boardDescription" class="form-control" id="description" rows="4" placeholder="Description of your new board"></textarea>
+    </div>
+  </div>
+  <div class="p-3">
+    <button (click)="createBoard()" [routerLink]="'../'" class="btn btn-primary">Create</button>
+  </div>
+</div>
+
+

@@ -6,6 +6,9 @@ import {BoardDetails} from '../shared/BoardDetails';
 import {TaskPriority} from '../shared/TaskPriority';
 import {TaskState} from '../shared/TaskState';
 import {Board} from '../shared/Board';
+import {Task} from '../shared/Task';
+import {SubTask} from '../shared/SubTask';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +16,18 @@ import {Board} from '../shared/Board';
 export class TaskService {
 
   constructor(private httpClient: HttpClient, private authService: AuthService) { }
-  createTask(name, description, boardId, assignedUserId, priorityId, stateId) {
+
+  getTaskById(id: number): Observable<Task> {
+    const url = `${Consts.API_URL}/task/${id}`;
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.get<Task>(url, options);
+  }
+
+  createTask(name, description, boardId, assignedUserId, priorityId, stateId, subTasks: Array<SubTask>): void {
     const url = Consts.API_URL + '/task';
     const postData = {
       name,
@@ -21,7 +35,8 @@ export class TaskService {
       boardId,
       assignedUserId,
       priorityId,
-      stateId
+      stateId,
+      subTasks
     };
     const options = {
       headers: new HttpHeaders()
@@ -29,6 +44,19 @@ export class TaskService {
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
     this.httpClient.post(url, postData, options).subscribe();
+  }
+
+  public updateTask(task: Task): any {
+    const url = `${Consts.API_URL}/task/${task.id}`;
+    const postData = {
+      task
+    };
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.put<Task>(url, postData, options).subscribe();
   }
 
   getTaskPriorities() {

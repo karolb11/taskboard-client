@@ -1,4 +1,4 @@
-export interface TaskState {
+export class TaskState {
   id: number;
   name: string;
 }

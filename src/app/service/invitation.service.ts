@@ -12,7 +12,7 @@ export class InvitationService {
 
   constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
-  public inviteUserToBoard(usernameOrEmail: string, localRoleId: number, boardId: number) {
+  public inviteUserToBoard(usernameOrEmail: string, localRoleId: number, boardId: number): any {
     const url = Consts.API_URL + '/invitation';
     const postData = {
       usernameOrEmail,
@@ -27,7 +27,7 @@ export class InvitationService {
     return this.httpClient.post(url, postData, options);
   }
 
-  public getUserInvitations() {
+  public getUserInvitations(): any {
     const url = Consts.API_URL + '/invitation';
     const options = {
       headers: new HttpHeaders()
@@ -37,7 +37,7 @@ export class InvitationService {
     return this.httpClient.get<Array<Invitation>>(url, options);
   }
 
-  public acceptInvitation(invitationId: number) {
+  public acceptInvitation(invitationId: number): any {
     const url = Consts.API_URL + '/invitation/' + invitationId;
     const options = {
       headers: new HttpHeaders()

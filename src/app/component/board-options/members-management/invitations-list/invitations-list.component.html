@@ -1,0 +1,18 @@
+<table class="table">
+  <thead class="thead-light">
+  <th scope="col">User</th>
+  <th scope="col">Role</th>
+  <th scope="col"></th>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let user of invitedUsers">
+    <tr>
+      <td>{{user.name}}</td>
+      <td>{{user.localRole.name | transformLocalRoleName}}</td>
+      <td>
+        <button class="btn btn-outline-warning">Cancel</button>
+      </td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>

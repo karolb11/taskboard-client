@@ -1,0 +1,18 @@
+<table class="table">
+  <thead class="thead-light">
+  <th scope="col">User</th>
+  <th scope="col">Role</th>
+  <th scope="col"></th>
+  </thead>
+  <tbody>
+  <ng-container *ngFor="let member of members">
+    <tr>
+      <td>{{member.name}}</td>
+      <td>{{member.localRole.name | transformLocalRoleName}}</td>
+      <td>
+        <button class="btn btn-outline-primary">Edit</button>
+      </td>
+    </tr>
+  </ng-container>
+  </tbody>
+</table>

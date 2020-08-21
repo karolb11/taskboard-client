@@ -13,7 +13,7 @@ export class BoardService {
 
   constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
-  public getUsersBoard() {
+  public getUsersBoard(): any {
     const url = Consts.API_URL + '/board';
     const options = {
       headers: new HttpHeaders()
@@ -23,7 +23,7 @@ export class BoardService {
     return this.httpClient.get<Array<Board>>(url, options);
   }
 
-  public getBoardById(boardId: number) {
+  public getBoardById(boardId: number): any {
     const url = Consts.API_URL + '/board/' + boardId;
     const options = {
       headers: new HttpHeaders()
@@ -33,7 +33,7 @@ export class BoardService {
     return this.httpClient.get<BoardDetails>(url, options);
   }
 
-  public createBoard(name: string, description: string) {
+  public createBoard(name: string, description: string): any {
     const url = Consts.API_URL + '/board';
     const postData = {
       name,
@@ -44,10 +44,24 @@ export class BoardService {
         .set('Content-Type',  `application/json`)
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
-    return this.httpClient.post<Board>(url, postData, options);
+    return this.httpClient.post<Board>(url, postData, options).subscribe();
   }
 
-  public getUsersLocalRoles(boarId: number) {
+  public updateBoard(boardId: number, name: string, description: string): any {
+    const url = `${Consts.API_URL}/board/${boardId}`;
+    const postData = {
+      name,
+      description
+    };
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.put<Board>(url, postData, options).subscribe();
+  }
+
+  public getUsersLocalRoles(boarId: number): any {
     const url = Consts.API_URL + '/local-role/my?boardId=' + boarId;
     const options = {
       headers: new HttpHeaders()
