@@ -1,0 +1,14 @@
+
+
+<div class="card text-white mb-3" [ngClass]="getColor()" style="max-width: 18rem;">
+  <div class="card-header">{{getStateName()}}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{task.name}}</h5>
+    <p class="card-text">{{task.description}}</p>
+  </div>
+  <div class="card-footer text-right">
+    <ng-container *ngIf="task.assignedUser != null else noAssigned">{{task.assignedUser}}</ng-container>
+    <ng-template #noAssigned><span class="text-warning">Not assigned</span></ng-template>
+
+  </div>
+</div>
