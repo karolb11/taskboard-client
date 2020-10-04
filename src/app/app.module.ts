@@ -28,6 +28,13 @@ import { MembersListComponent } from './component/board-options/members-manageme
 import { InvitationsListComponent } from './component/board-options/members-management/invitations-list/invitations-list.component';
 import { TaskEditComponent } from './component/task-edit/task-edit.component';
 import { SubtasksListComponent } from './component/subtasks-list/subtasks-list.component';
+import { InvitationsComponent } from './component/invitations/invitations.component';
+import { CommentSectionComponent } from './component/task-edit/comment-section/comment-section.component';
+import { ChatComponent } from './component/chat/chat.component';
+import { ChatMessageComponent } from './component/chat-message/chat-message.component';
+import { SubscribeButtonComponent } from './component/task-edit/subscribe-button/subscribe-button.component';
+import { SubscribedTasksOverviewComponent } from './component/subscribed-tasks-overview/subscribed-tasks-overview.component';
+import { TransformDatePipe } from './shared/transform-date.pipe';
 
 
 @NgModule({
@@ -53,6 +60,13 @@ import { SubtasksListComponent } from './component/subtasks-list/subtasks-list.c
     InvitationsListComponent,
     TaskEditComponent,
     SubtasksListComponent,
+    InvitationsComponent,
+    CommentSectionComponent,
+    ChatComponent,
+    ChatMessageComponent,
+    SubscribeButtonComponent,
+    SubscribedTasksOverviewComponent,
+    TransformDatePipe,
   ],
   imports: [
     BrowserModule,

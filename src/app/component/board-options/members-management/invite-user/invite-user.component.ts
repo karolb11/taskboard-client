@@ -32,6 +32,8 @@ export class InviteUserComponent implements OnInit {
 
   inviteUserToBoard(): any {
     this.invitationService.inviteUserToBoard(this.usernameOrEmail, this.localRoleId, this.boardId).subscribe();
+    this.usernameOrEmail = '';
+    this.localRoleId = 0;
   }
 
 

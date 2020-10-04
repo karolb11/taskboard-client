@@ -10,7 +10,7 @@
       <td>{{user.name}}</td>
       <td>{{user.localRole.name | transformLocalRoleName}}</td>
       <td>
-        <button class="btn btn-outline-warning">Cancel</button>
+        <button class="btn btn-outline-warning" (click)="cancelInvitation(user.invitationId)">Cancel</button>
       </td>
     </tr>
   </ng-container>

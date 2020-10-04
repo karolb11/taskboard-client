@@ -7,8 +7,8 @@
       <div class="collapse navbar-collapse justify-content-md-between" id="navbarNavAltMarkup">
         <div class="navbar-nav">
           <a [routerLink]="'boards'" class="nav-item nav-link" href="#">My Boards</a>
-          <a class="nav-item nav-link" href="#">Subscribed Tasks</a>
-          <a class="nav-item nav-link" href="#">Invitations</a>
+          <a [routerLink]="'subscribedTasks'" class="nav-item nav-link" href="#">Subscribed Tasks</a>
+          <a [routerLink]="'invitations'" class="nav-item nav-link" href="#">Invitations</a>
           <a class="nav-item nav-link" href="#">My Profile</a>
         </div>
         <button (click)="logout()" class="btn btn-outline-secondary">Logout</button>

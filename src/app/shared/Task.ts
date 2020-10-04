@@ -4,13 +4,13 @@ import {User} from './User';
 import {TaskState} from './TaskState';
 
 export class Task {
-  id: number;
-  name: string;
-  description: string;
-  assignedUser: User;
-  state: TaskState;
-  priority: TaskPriority;
-  subTasks: Array<SubTask>;
+  public id: number;
+  public name: string;
+  public description: string;
+  public assignedUser: User;
+  public state: TaskState;
+  public priority: TaskPriority;
+  public subTasks: Array<SubTask>;
 
 
   constructor(id: number, name: string, description: string, assignedUser: User, state: TaskState, priority: TaskPriority, subTasks: Array<SubTask>) {

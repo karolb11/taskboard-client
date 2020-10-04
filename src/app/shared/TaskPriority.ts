@@ -1,4 +1,4 @@
-export interface TaskPriority {
+export class TaskPriority {
   id: number;
-  name:string;
+  name: string;
 }

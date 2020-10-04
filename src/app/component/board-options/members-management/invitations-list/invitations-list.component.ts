@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {User} from '../../../../shared/User';
 import {UserService} from '../../../../service/user.service';
 import {ActivatedRoute} from '@angular/router';
+import {InvitationService} from '../../../../service/invitation.service';
 
 @Component({
   selector: 'app-invitations-list',
@@ -12,7 +13,9 @@ export class InvitationsListComponent implements OnInit {
   boardId: number;
   invitedUsers: Array<User>;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private userService: UserService,
+              private route: ActivatedRoute,
+              private invitationService: InvitationService) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -22,6 +25,10 @@ export class InvitationsListComponent implements OnInit {
       //we would like to remove all users who already accepted an invitation
       this.invitedUsers = res.filter(m => !m.accepted);
     });
+  }
+
+  cancelInvitation(invitationId: number): any {
+    this.invitationService.removeInvitation(invitationId).subscribe();
   }
 
 }

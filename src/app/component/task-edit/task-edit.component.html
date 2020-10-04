@@ -5,7 +5,8 @@
       <span>Edit task parameters below</span>
     </div>
     <div>
-      <button [routerLink]="'../'" class="btn btn-secondary">Back</button>
+      <app-subscribe-button></app-subscribe-button>
+      <button [routerLink]="'../'" class="btn btn-secondary ml-1">Back</button>
     </div>
   </div>
   <div class="p-3">
@@ -44,6 +45,10 @@
           <option [value]="user.id">{{user.name}}</option>
         </ng-container>
       </select>
+    </div>
+    <div>
+      <label for="comment-section">Comments:</label>
+      <app-comment-section id="comment-section"></app-comment-section>
     </div>
   </div>
   <div class="pl-3 pr-3 pb-3">

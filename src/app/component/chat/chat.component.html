@@ -1,0 +1,12 @@
+<div class="mt-2">
+  <h3>Chat with your teammates</h3>
+  <ng-container *ngFor="let message of messages">
+    <app-chat-message [chatMessage]="message"></app-chat-message>
+  </ng-container>
+  <div class="form-group">
+    <label for="newMessage">your message:</label>
+    <textarea [(ngModel)]="newMessage" class="form-control" id="newMessage" rows="2" placeholder="Write new message..."></textarea>
+  </div>
+  <button (click)="addNewMessage()" class="float-right btn btn-outline-primary">Send</button>
+</div>
+
