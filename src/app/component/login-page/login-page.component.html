@@ -10,5 +10,6 @@
       <input [(ngModel)]="password" type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
     </p>
     <button (click)="signIn()" class="btn btn-lg btn-primary btn-block">Sign in</button>
+    <button [routerLink]="'../signup'" class="btn btn-secondary btn-block">Register for free!</button>
   </div>
 </div>

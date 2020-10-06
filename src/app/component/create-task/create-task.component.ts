@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TaskPriority} from '../../shared/TaskPriority';
 import {User} from '../../shared/User';
 import {TaskState} from '../../shared/TaskState';
 import {TaskService} from '../../service/task.service';
 import {UserService} from '../../service/user.service';
 import {SubTask} from '../../shared/SubTask';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-task',
@@ -25,8 +26,11 @@ export class CreateTaskComponent implements OnInit {
   assignedUser: number;
   subTasks: Array<SubTask>;
 
-  constructor(private taskService: TaskService, private userService: UserService,
-              private route: ActivatedRoute) {
+  constructor(private taskService: TaskService,
+              private userService: UserService,
+              private route: ActivatedRoute,
+              private toastr: ToastrService,
+              private router: Router) {
     this.subTasks = new Array<SubTask>();
   }
 
@@ -54,7 +58,10 @@ export class CreateTaskComponent implements OnInit {
       this.priority,
       this.state,
       this.subTasks
-    );
+    ).subscribe(res => {
+      this.toastr.success(res.message);
+      this.router.navigate([`/boards/${this.boardId}`]);
+    });
   }
 
   clear() {

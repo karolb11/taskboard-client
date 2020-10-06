@@ -10,6 +10,7 @@ import {Task} from '../shared/Task';
 import {SubTask} from '../shared/SubTask';
 import {Observable} from 'rxjs';
 import {SubscribedTask} from '../shared/SubscribedTask';
+import {ApiResponse} from '../shared/ApiResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class TaskService {
 
   constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
-  createTask(name, description, boardId, assignedUserId, priorityId, stateId, subTasks: Array<SubTask>): void {
+  createTask(name, description, boardId, assignedUserId, priorityId, stateId, subTasks: Array<SubTask>): any {
     const url = Consts.API_URL + '/task';
     const postData = {
       name,
@@ -34,7 +35,7 @@ export class TaskService {
         .set('Content-Type',  `application/json`)
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
-    this.httpClient.post(url, postData, options).subscribe();
+    return this.httpClient.post<ApiResponse>(url, postData, options);
   }
 
   getTaskById(id: number): Observable<Task> {
@@ -72,7 +73,7 @@ export class TaskService {
         .set('Content-Type',  `application/json`)
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
-    return this.httpClient.put<Task>(url, postData, options).subscribe();
+    return this.httpClient.put<Task>(url, postData, options);
   }
 
   getTaskPriorities() {

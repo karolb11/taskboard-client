@@ -35,6 +35,11 @@ import { ChatMessageComponent } from './component/chat-message/chat-message.comp
 import { SubscribeButtonComponent } from './component/task-edit/subscribe-button/subscribe-button.component';
 import { SubscribedTasksOverviewComponent } from './component/subscribed-tasks-overview/subscribed-tasks-overview.component';
 import { TransformDatePipe } from './shared/transform-date.pipe';
+import { RegistrationComponent } from './component/registration/registration.component';
+import { HomePageComponent } from './component/home-page/home-page.component';
+import {ToastrModule} from 'ngx-toastr';
+import {CommonModule} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -67,6 +72,8 @@ import { TransformDatePipe } from './shared/transform-date.pipe';
     SubscribeButtonComponent,
     SubscribedTasksOverviewComponent,
     TransformDatePipe,
+    RegistrationComponent,
+    HomePageComponent,
   ],
   imports: [
     BrowserModule,
@@ -75,7 +82,10 @@ import { TransformDatePipe } from './shared/transform-date.pipe';
     HttpClientModule,
     AppRoutingModule,
     AvatarModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    CommonModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

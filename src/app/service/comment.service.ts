@@ -19,7 +19,7 @@ export class CommentService {
         .set('Content-Type',  `application/json`)
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
-    return this.httpClient.post(url, postData, options).subscribe();
+    return this.httpClient.post(url, postData, options);
   }
 
   public getComment(taskId: number): any {

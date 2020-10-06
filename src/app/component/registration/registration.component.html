@@ -1,0 +1,32 @@
+<div class="shadow-sm bg-white rounded mt-5">
+  <div class="card-header d-flex justify-content-between">
+    <div>
+      <h1>Create new account</h1>
+      <span>Fill up fields below to create new accout</span>
+    </div>
+    <div>
+      <button [routerLink]="'../'" class="btn btn-secondary">Back</button>
+    </div>
+  </div>
+  <div class="p-3">
+    <div>
+      <div class="form-group">
+        <label for="usernameInput">Username</label>
+        <input type="text" class="form-control" id="usernameInput" [(ngModel)]="username">
+      </div>
+      <div class="form-group">
+        <label for="fullNameInput">Full name</label>
+        <input type="text" class="form-control" id="fullNameInput" [(ngModel)]="fullName">
+      </div>
+      <div class="form-group">
+        <label for="emailInput">Email address</label>
+        <input type="email" class="form-control" id="emailInput" [(ngModel)]="email">
+      </div>
+      <div class="form-group">
+        <label for="exampleInputPassword">Password</label>
+        <input type="password" class="form-control" id="exampleInputPassword" [(ngModel)]="password">
+      </div>
+      <button class="btn btn-primary" (click)="register()">Submit</button>
+    </div>
+  </div>
+</div>

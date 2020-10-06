@@ -5,7 +5,7 @@
   <th scope="col"></th>
   </thead>
   <tbody>
-  <ng-container *ngFor="let member of members">
+  <ng-container *ngFor="let member of userService.boardMembers">
     <tr>
       <td>{{member.name}}</td>
       <td>{{member.localRole.name | transformLocalRoleName}}</td>

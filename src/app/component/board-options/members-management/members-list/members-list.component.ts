@@ -11,18 +11,13 @@ import {LocalRoleName} from '../../../../shared/LocalRoleName';
 })
 export class MembersListComponent implements OnInit {
   boardId: number;
-  members: Array<User>;
 
-  constructor(private userService: UserService, private route: ActivatedRoute) { }
+  constructor(public userService: UserService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.boardId = +params.get('id');
     });
-    this.userService.getBoardMembers(this.boardId).subscribe(res => {
-      //we would like to remove all users who didn't accept an invitation
-      this.members = res.filter(m => m.accepted);
-    });
+    this.userService.getBoardMembers(this.boardId);
   }
-
 }

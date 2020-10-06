@@ -2,10 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import {TaskPriority} from '../../shared/TaskPriority';
 import {TaskState} from '../../shared/TaskState';
 import {User} from '../../shared/User';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {Task} from '../../shared/Task';
 import {TaskService} from '../../service/task.service';
 import {UserService} from '../../service/user.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-task-edit',
@@ -27,7 +28,9 @@ export class TaskEditComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
               private taskService: TaskService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private toastr: ToastrService,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
@@ -52,6 +55,9 @@ export class TaskEditComponent implements OnInit {
   }
 
   save(): any {
-    this.taskService.updateTask(this.task);
+    this.taskService.updateTask(this.task).subscribe(res => {
+      this.toastr.success('Task modified', 'Saved');
+      this.router.navigate([`/boards/${this.boardId}`]);
+    });
   }
 }

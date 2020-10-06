@@ -11,6 +11,9 @@ export class UserService {
 
   constructor(private httpClient: HttpClient, private authService: AuthService) { }
 
+  public boardMembers: Array<User>;
+  public boardInvitedUsers: Array<User>;
+
   getBoardUsers(boardId: number) {
     const url = `${Consts.API_URL}/board/${boardId}/users`;
     const options = {
@@ -27,6 +30,17 @@ export class UserService {
         .set('Content-Type',  `application/json`)
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
-    return this.httpClient.get<Array<User>>(url, options);
+    this.httpClient.get<Array<User>>(url, options)
+      .subscribe(res => this.boardMembers = res.filter(m => m.accepted));
+  }
+  getBoardInvitedUsers(boardId: number): void {
+    const url = `${Consts.API_URL}/board/${boardId}/members`;
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    this.httpClient.get<Array<User>>(url, options)
+      .subscribe(res => this.boardInvitedUsers = res.filter(m => !m.accepted));
   }
 }

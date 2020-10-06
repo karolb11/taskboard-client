@@ -44,7 +44,7 @@ export class BoardService {
         .set('Content-Type',  `application/json`)
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
-    return this.httpClient.post<Board>(url, postData, options).subscribe();
+    return this.httpClient.post<Board>(url, postData, options);
   }
 
   public updateBoard(boardId: number, name: string, description: string): any {

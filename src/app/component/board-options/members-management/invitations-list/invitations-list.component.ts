@@ -11,9 +11,8 @@ import {InvitationService} from '../../../../service/invitation.service';
 })
 export class InvitationsListComponent implements OnInit {
   boardId: number;
-  invitedUsers: Array<User>;
 
-  constructor(private userService: UserService,
+  constructor(public userService: UserService,
               private route: ActivatedRoute,
               private invitationService: InvitationService) { }
 
@@ -21,14 +20,12 @@ export class InvitationsListComponent implements OnInit {
     this.route.paramMap.subscribe(params => {
       this.boardId = +params.get('id');
     });
-    this.userService.getBoardMembers(this.boardId).subscribe(res => {
-      //we would like to remove all users who already accepted an invitation
-      this.invitedUsers = res.filter(m => !m.accepted);
-    });
+    this.userService.getBoardInvitedUsers(this.boardId);
   }
 
   cancelInvitation(invitationId: number): any {
-    this.invitationService.removeInvitation(invitationId).subscribe();
+    this.invitationService.removeInvitation(invitationId)
+      .subscribe(res => this.userService.getBoardInvitedUsers(this.boardId));
   }
 
 }

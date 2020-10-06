@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Invitation} from '../../shared/Invitation';
 import {InvitationService} from '../../service/invitation.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-invitations',
@@ -11,7 +12,8 @@ export class InvitationsComponent implements OnInit {
 
   invitations: Array<Invitation>;
 
-  constructor(private invitationService: InvitationService) { }
+  constructor(private invitationService: InvitationService,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.loadInvitations();
@@ -22,11 +24,17 @@ export class InvitationsComponent implements OnInit {
   }
 
   accept(invitationId: number): void {
-    this.invitationService.acceptInvitation(invitationId).subscribe(res => this.loadInvitations());
+    this.invitationService.acceptInvitation(invitationId).subscribe(res => {
+      this.toastr.success(res.message);
+      this.loadInvitations();
+    });
   }
 
   deny(invitationId: number): void {
-    this.invitationService.removeInvitation(invitationId).subscribe(res => this.loadInvitations());
+    this.invitationService.removeInvitation(invitationId).subscribe(res => {
+      this.toastr.success(res.message);
+      this.loadInvitations();
+    });
   }
 
 }

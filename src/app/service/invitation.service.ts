@@ -25,7 +25,7 @@ export class InvitationService {
         .set('Content-Type',  `application/json`)
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
-    return this.httpClient.post(url, postData, options);
+    return this.httpClient.post<ApiResponse>(url, postData, options);
   }
 
   public getUserInvitations(): any {
