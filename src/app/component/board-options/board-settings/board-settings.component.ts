@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {BoardDetails} from '../../../shared/BoardDetails';
 import {ActivatedRoute} from '@angular/router';
 import {BoardService} from '../../../service/board.service';
+import {ToastrService} from 'ngx-toastr';
 
 @Component({
   selector: 'app-board-settings',
@@ -13,7 +14,9 @@ export class BoardSettingsComponent implements OnInit {
   boardDescription: string;
   id: number;
 
-  constructor(private route: ActivatedRoute, private boardService: BoardService) { }
+  constructor(private route: ActivatedRoute,
+              private boardService: BoardService,
+              private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => this.id = params.id);
@@ -24,7 +27,10 @@ export class BoardSettingsComponent implements OnInit {
   }
 
   updateBoard(): any {
-    this.boardService.updateBoard(this.id, this.boardName, this.boardDescription);
+    this.boardService.updateBoard(this.id, this.boardName, this.boardDescription)
+      .subscribe(res => {
+        this.toastr.success(res.message);
+      });
   }
 
 }

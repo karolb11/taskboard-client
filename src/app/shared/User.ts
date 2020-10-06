@@ -1,9 +1,6 @@
-import {Role} from './Role';
-
 export class User {
-  invitationId: number;
   id: number;
+  username: string;
   name: string;
-  localRole: Role;
-  accepted: boolean;
+  email: string;
 }

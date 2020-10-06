@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {User} from '../../../../shared/User';
+import {BoardUser} from '../../../../shared/BoardUser';
 import {UserService} from '../../../../service/user.service';
 import {ActivatedRoute} from '@angular/router';
 import {InvitationService} from '../../../../service/invitation.service';

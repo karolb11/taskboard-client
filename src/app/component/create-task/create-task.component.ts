@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {TaskPriority} from '../../shared/TaskPriority';
-import {User} from '../../shared/User';
+import {BoardUser} from '../../shared/BoardUser';
 import {TaskState} from '../../shared/TaskState';
 import {TaskService} from '../../service/task.service';
 import {UserService} from '../../service/user.service';
@@ -17,7 +17,7 @@ export class CreateTaskComponent implements OnInit {
   boardId: number;
   taskPriorities: Array<TaskPriority>;
   taskStates: Array<TaskState>;
-  boardUsers: Array<User>;
+  boardUsers: Array<BoardUser>;
 
   name: string;
   description: string;

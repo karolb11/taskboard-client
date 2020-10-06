@@ -40,6 +40,7 @@ import { HomePageComponent } from './component/home-page/home-page.component';
 import {ToastrModule} from 'ngx-toastr';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import { MyProfileComponent } from './component/my-profile/my-profile.component';
 
 
 @NgModule({
@@ -74,6 +75,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     TransformDatePipe,
     RegistrationComponent,
     HomePageComponent,
+    MyProfileComponent,
   ],
   imports: [
     BrowserModule,

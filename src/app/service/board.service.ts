@@ -5,6 +5,7 @@ import {AuthService} from './auth.service';
 import {Board} from '../shared/Board';
 import {BoardDetails} from '../shared/BoardDetails';
 import {Role} from '../shared/Role';
+import {ApiResponse} from '../shared/ApiResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -58,7 +59,7 @@ export class BoardService {
         .set('Content-Type',  `application/json`)
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
-    return this.httpClient.put<Board>(url, postData, options).subscribe();
+    return this.httpClient.put<ApiResponse>(url, postData, options);
   }
 
   public getUsersLocalRoles(boarId: number): any {

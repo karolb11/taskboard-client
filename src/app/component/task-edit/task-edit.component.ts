@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {TaskPriority} from '../../shared/TaskPriority';
 import {TaskState} from '../../shared/TaskState';
-import {User} from '../../shared/User';
+import {BoardUser} from '../../shared/BoardUser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Task} from '../../shared/Task';
 import {TaskService} from '../../service/task.service';
@@ -18,7 +18,7 @@ export class TaskEditComponent implements OnInit {
   boardId: number;
   taskPriorities: Array<TaskPriority>;
   taskStates: Array<TaskState>;
-  boardUsers: Array<User>;
+  boardUsers: Array<BoardUser>;
   task: Task;
 
   name: string;

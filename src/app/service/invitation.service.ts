@@ -48,6 +48,16 @@ export class InvitationService {
     return this.httpClient.patch<ApiResponse>(url, null, options);
   }
 
+  public editInvitation(invitationId: number, localRoleId: number) {
+    const url = `${Consts.API_URL}/invitation/${invitationId}?localRoleId=${localRoleId}`;
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.put<ApiResponse>(url, null, options);
+  }
+
   public removeInvitation(invitationId: number): any {
     const url = Consts.API_URL + '/invitation/' + invitationId;
     const options = {

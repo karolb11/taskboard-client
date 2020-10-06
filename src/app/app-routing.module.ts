@@ -14,6 +14,7 @@ import {AuthGuard} from './auth/auth.guard';
 import {LoginPageComponent} from './component/login-page/login-page.component';
 import {NoAuthGuard} from './auth/no-auth.guard';
 import {HomePageComponent} from './component/home-page/home-page.component';
+import {MyProfileComponent} from './component/my-profile/my-profile.component';
 
 
 
@@ -28,7 +29,8 @@ const routes: Routes = [
   {path: 'boards/:id/create-task', component: CreateTaskComponent, canActivate: [AuthGuard]},
   {path: 'boards/:id/options', component: BoardOptionsComponent, canActivate: [AuthGuard]},
   {path: 'boards/:id/:taskId', component: TaskEditComponent, canActivate: [AuthGuard]},
-  {path: 'subscribedTasks', component: SubscribedTasksOverviewComponent, canActivate: [AuthGuard]}
+  {path: 'subscribedTasks', component: SubscribedTasksOverviewComponent, canActivate: [AuthGuard]},
+  {path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
