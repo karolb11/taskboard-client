@@ -3,6 +3,7 @@ import {CommentService} from '../../../service/comment.service';
 import {TaskService} from '../../../service/task.service';
 import {ActivatedRoute} from '@angular/router';
 import {ToastrService} from 'ngx-toastr';
+import {Comment} from '../../../shared/Comment';
 
 @Component({
   selector: 'app-comment-section',

@@ -1,9 +1,9 @@
-import {Role} from './Role';
+import {LocalRole} from './LocalRole';
 
 export class BoardUser {
   invitationId: number;
   id: number;
   name: string;
-  localRole: Role;
+  localRole: LocalRole;
   accepted: boolean;
 }

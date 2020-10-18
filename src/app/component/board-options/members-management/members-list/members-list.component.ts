@@ -3,7 +3,7 @@ import {BoardUser} from '../../../../shared/BoardUser';
 import {UserService} from '../../../../service/user.service';
 import {ActivatedRoute} from '@angular/router';
 import {LocalRoleName} from '../../../../shared/LocalRoleName';
-import {Role} from '../../../../shared/Role';
+import {LocalRole} from '../../../../shared/LocalRole';
 import {RoleService} from '../../../../service/role.service';
 import {InvitationService} from '../../../../service/invitation.service';
 import {ToastrService} from 'ngx-toastr';
@@ -15,7 +15,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class MembersListComponent implements OnInit {
   boardId: number;
-  roles: Array<Role>;
+  roles: Array<LocalRole>;
 
   constructor(public userService: UserService,
               private roleService: RoleService,

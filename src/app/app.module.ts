@@ -41,6 +41,7 @@ import {ToastrModule} from 'ngx-toastr';
 import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MyProfileComponent } from './component/my-profile/my-profile.component';
+import { CommentComponent } from './component/task-edit/comment-section/comment/comment.component';
 
 
 @NgModule({
@@ -76,6 +77,7 @@ import { MyProfileComponent } from './component/my-profile/my-profile.component'
     RegistrationComponent,
     HomePageComponent,
     MyProfileComponent,
+    CommentComponent,
   ],
   imports: [
     BrowserModule,

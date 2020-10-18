@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Role} from '../../../../shared/Role';
+import {LocalRole} from '../../../../shared/LocalRole';
 import {RoleService} from '../../../../service/role.service';
 import {InvitationService} from '../../../../service/invitation.service';
 import {ActivatedRoute} from '@angular/router';
@@ -13,7 +13,7 @@ import {ToastrService} from 'ngx-toastr';
 })
 export class InviteUserComponent implements OnInit {
   boardId: number;
-  roles: Array<Role>;
+  roles: Array<LocalRole>;
   usernameOrEmail: string;
   localRoleId: number;
 

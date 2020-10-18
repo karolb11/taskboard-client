@@ -1,0 +1,22 @@
+<div class="alert alert-primary d-flex flex-row align-items-center" role="alert">
+  <div class="d-flex flex-row align-items-center w-100">
+    <ng-container *ngIf="!inEdition else editField">
+      <div class="d-flex flex-row align-items-center">
+        <ngx-avatar class="my-avatar pr-1" size="30" value="{{comment.authorName| firstLetter}}"></ngx-avatar>
+        <strong>{{comment.authorName}}:&nbsp;</strong>
+      </div>
+      <div>
+        {{comment.content}}
+      </div>
+    </ng-container>
+    <ng-template #editField>
+      <textarea class="form-control w-100 mr-3" [(ngModel)]="newCommentContent"></textarea>
+      <button class="btn btn-sm btn-primary" (click)="edit()">save</button>
+    </ng-template>
+  </div>
+  <ng-container *ngIf="isUserAbleToEdit() && !this.inEdition">
+    <div class="float-right">
+      <button class="btn btn-sm btn-primary" (click)="openEditMode()">edit</button>
+    </div>
+  </ng-container>
+</div>

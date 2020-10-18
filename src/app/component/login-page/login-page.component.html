@@ -1,15 +1,24 @@
-<div class="container mt-5 d-flex justify-content-center">
-  <div class="form-signin col-xs-12 col-sm-8 col-lg-4">
-    <h3 class="form-signin-heading">Sign in to Taskboard</h3>
-    <p>
-      <label for="usernameOrEmail" class="sr-only">Username</label>
-      <input [(ngModel)]="usernameOrEmail" type="text" id="usernameOrEmail" name="usernameOrEmail" class="form-control" placeholder="Username or Email" required="" autofocus="">
-    </p>
-    <p>
-      <label for="password" class="sr-only">Password</label>
-      <input [(ngModel)]="password" type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
-    </p>
-    <button (click)="signIn()" class="btn btn-lg btn-primary btn-block">Sign in</button>
-    <button [routerLink]="'../signup'" class="btn btn-secondary btn-block">Register for free!</button>
+<div class="container vh-100 d-flex flex-column justify-content-center align-content-center">
+  <div class="row justify-content-center">
+    <div class="col-lg-4 shadow p-3 pt-4 d-none d-lg-block" style="background: #646ecb">
+      <img src="assets/logo/facebook_cover_photo_1.png" class="w-100">
+    </div>
+    <div class="form-signin shadow col-xs-12 col-sm-8 col-lg-4 p-lg-5 bg-secondary">
+      <center>
+        <img src="assets/logo/logo-transparent-inline-sm.png" class="w-75 pt-2 pb-2 pl-5 pr-5 d-lg-none">
+      </center>
+
+      <h3 class="form-signin-heading text-center text-light">User Login</h3>
+      <p>
+        <label for="usernameOrEmail" class="sr-only">Username</label>
+        <input [(ngModel)]="usernameOrEmail" type="text" id="usernameOrEmail" name="usernameOrEmail" class="form-control" placeholder="Username or Email" required="" autofocus="">
+      </p>
+      <p>
+        <label for="password" class="sr-only">Password</label>
+        <input [(ngModel)]="password" type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
+      </p>
+      <button (click)="signIn()" class="btn btn-lg btn-primary btn-block">Sign in</button>
+      <button [routerLink]="'../signup'" class="btn btn-secondary btn-block">Register for free!</button>
+    </div>
   </div>
 </div>

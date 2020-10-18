@@ -39,6 +39,7 @@
     <div class="form-group">
       <label for="user">Assigned User:</label>
       <select id="user" class="form-control" [(ngModel)]="assignedUser">
+        <option value="null">None</option>
         <ng-container *ngFor="let user of boardUsers">
           <option [value]="user.id">{{user.name}}</option>
         </ng-container>

@@ -1,13 +1,5 @@
 <ng-container *ngFor="let comment of comments">
-  <div class="alert alert-primary d-flex flex-row align-items-center" role="alert">
-    <div class="d-flex flex-row align-items-center">
-      <ngx-avatar class="my-avatar pr-1" value="{{comment.authorName| firstLetter}}"></ngx-avatar>
-      <strong>{{comment.authorName}}:&nbsp;</strong>
-    </div>
-    <div>
-      {{comment.content}}
-    </div>
-  </div>
+<app-comment [comment]="comment"></app-comment>
 </ng-container>
 <div class="form-group">
   <label for="newComment">New comment:</label>

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {InvitationService} from '../../../service/invitation.service';
 import {RoleService} from '../../../service/role.service';
-import {Role} from '../../../shared/Role';
+import {LocalRole} from '../../../shared/LocalRole';
 
 @Component({
   selector: 'app-members-management',
@@ -12,7 +12,7 @@ import {Role} from '../../../shared/Role';
 export class MembersManagementComponent implements OnInit {
 
   boardId: number;
-  roles: Array<Role>;
+  roles: Array<LocalRole>;
   usernameOrEmail: string;
   localRoleId: number;
 

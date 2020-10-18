@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {combineAll} from 'rxjs/operators';
 import {ApiResponse} from '../../shared/ApiResponse';
+import {HttpErrorResponse} from '@angular/common/http';
 
 @Component({
   selector: 'app-registration',
@@ -23,20 +24,17 @@ export class RegistrationComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public show(): void {
-    this.toastr.success('Hello world!', 'Toastr fun!');
-  }
-
   public register(): void {
     this.authService.registerAccount(this.username, this.fullName, this.email, this.password)
-      .subscribe(res => {
-        if (res.success) {
-          this.toastr.success(res.message);
-          this.router.navigate(['']);
+      .subscribe(res => this.toastr.success(res.message),
+        err => {
+        console.log(err);
+        if (err.status === 409) {
+          this.toastr.error(err.error.message);
         } else {
-          this.toastr.error(res.message);
-        }},
-        err => this.toastr.error('Entered values are invalid'), 'Error!');
+            this.toastr.error('error');
+          }
+        });
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {BoardDetails} from '../../shared/BoardDetails';
 import {ActivatedRoute} from '@angular/router';
-import {Role} from '../../shared/Role';
+import {LocalRole} from '../../shared/LocalRole';
 import {BoardService} from '../../service/board.service';
 import {LocalRoleName} from '../../shared/LocalRoleName';
 import {faPlusSquare} from '@fortawesome/free-regular-svg-icons';
@@ -15,7 +15,7 @@ import {faCog} from '@fortawesome/free-solid-svg-icons';
 export class BoardDetailsComponent implements OnInit {
   id: number;
   board: BoardDetails;
-  localRole: Role;
+  localRole: LocalRole;
   plusIcon = faPlusSquare;
   optionsIcon = faCog;
 

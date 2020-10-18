@@ -1,6 +1,7 @@
-import {LocalRoleName} from './LocalRoleName';
+import {GlobalRoleName} from './GlobalRoleName';
 
-export interface Role {
+
+export class Role {
   id: number;
-  name: LocalRoleName;
+  name: GlobalRoleName;
 }

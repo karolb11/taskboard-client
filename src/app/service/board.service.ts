@@ -4,7 +4,7 @@ import {Consts} from '../shared/Consts';
 import {AuthService} from './auth.service';
 import {Board} from '../shared/Board';
 import {BoardDetails} from '../shared/BoardDetails';
-import {Role} from '../shared/Role';
+import {LocalRole} from '../shared/LocalRole';
 import {ApiResponse} from '../shared/ApiResponse';
 
 @Injectable({
@@ -69,6 +69,6 @@ export class BoardService {
         .set('Content-Type',  `application/json`)
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
-    return this.httpClient.get<Role>(url, options);
+    return this.httpClient.get<LocalRole>(url, options);
   }
 }

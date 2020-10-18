@@ -3,19 +3,21 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Consts} from '../shared/Consts';
 import {Router} from '@angular/router';
 import {ApiResponse} from '../shared/ApiResponse';
+import {ToastrService} from 'ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router,
+              private toastrService: ToastrService) { }
 
   public registerAccount(username, name, email, password): any {
     const postData = {
-      username: username,
-      name: name,
-      email: email,
+      username,
+      name,
+      email,
       password
     };
     const url = Consts.API_URL + '/auth/signup';
@@ -26,18 +28,14 @@ export class AuthService {
     return this.httpClient.post<ApiResponse>(url, postData, options);
   }
 
-  public signIn(usernameOrEmail, password): void {
+  public signIn(usernameOrEmail, password): any {
     const postData = {
       usernameOrEmail,
       password
     };
     const url = Consts.API_URL + '/auth/signin';
 
-    this.httpClient.post<AuthResponse>(url, postData).subscribe(res => {
-      localStorage.setItem('ACCESS_TOKEN', res.accessToken);
-      this.router.navigate(['']);
-    }
-    );
+    return this.httpClient.post<AuthResponse>(url, postData);
   }
 
   public isAuthenticated(): boolean {
