@@ -1,7 +1,9 @@
 <ng-container *ngIf="subscribed; else subscribeBlock">
   <button class="btn btn-primary" (click)="cancelSubscription()">
-    <fa-icon [icon]="checkIcon"></fa-icon>
+    <span class="text-nowrap">
+      <fa-icon [icon]="checkIcon"></fa-icon>
     Subscribed
+    </span>
   </button>
 </ng-container>
 
