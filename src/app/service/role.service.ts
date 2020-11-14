@@ -16,16 +16,9 @@ export class RoleService {
   currentRole: Role;
 
   constructor(private httpClient: HttpClient, private authService: AuthService) { }
-  getLocalRoles(): any {
-    const url = Consts.API_URL + '/local-role';
-    const options = {
-      headers: new HttpHeaders()
-        .set('Content-Type',  `application/json`)
-        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
-    };
-    return this.httpClient.get<Array<LocalRole>>(url, options);
-  }
   getCurrentUserData(): void {
+    this.currentLocalRole = null;
+    this.currentRole = null;
     const url = `${Consts.API_URL}/user/me`;
     const options = {
       headers: new HttpHeaders()
@@ -37,7 +30,15 @@ export class RoleService {
       this.currentRole = res.role;
     });
   }
-
+  getLocalRoles(): any {
+    const url = Consts.API_URL + '/local-role';
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.get<Array<LocalRole>>(url, options);
+  }
   getCurrentLocalRole(boardId: number): void {
     const url = Consts.API_URL + '/local-role/my?boardId=' + boardId;
     const options = {

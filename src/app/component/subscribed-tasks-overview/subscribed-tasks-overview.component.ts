@@ -16,4 +16,7 @@ export class SubscribedTasksOverviewComponent implements OnInit {
     this.taskService.getSubscribedTasks().subscribe(res => this.tasks = res);
   }
 
+  public dataLoaded(): boolean {
+    return this.tasks != null;
+}
 }

@@ -1,38 +1,43 @@
 <div class="shadow-sm bg-white rounded">
-  <div class="card-header d-flex justify-content-between">
-    <div>
-      <h1>Board Options</h1>
-      <span>Board management panel</span>
-    </div>
-    <div>
-      <button [routerLink]="'../'" class="btn btn-secondary">Back</button>
-    </div>
-  </div>
-  <div class="row p-3">
-    <div class="col-md-3 order-md-2">
-      <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
-        <ng-container *ngIf="canDisplayAdministrativeSettings() else notAdminMenu">
-          <a class="nav-link active" id="v-pills-board-settings-tab" data-toggle="pill" href="#v-pills-board-settings" role="tab">Board settings</a>
-          <a class="nav-link" id="v-pills-members-tab" data-toggle="pill" href="#v-pills-members" role="tab">Members management</a>
-          <a class="nav-link" id="v-pills-leave-tab" data-toggle="pill" href="#v-pills-leave" role="tab">Leave board</a>
-        </ng-container>
-        <ng-template #notAdminMenu>
-          <a class="nav-link active" id="v-pills-leave-tab" data-toggle="pill" href="#v-pills-leave" role="tab">Leave board</a>
-        </ng-template>
+  <ng-container *ngIf="dataLoaded() else loadingSpinner">
+    <div class="card-header d-flex justify-content-between">
+      <div>
+        <h1>Board Options</h1>
+        <span>Board management panel</span>
+      </div>
+      <div>
+        <button [routerLink]="'../'" class="btn btn-secondary">Back</button>
       </div>
     </div>
-    <div class="col-md-9 order-md-1">
-      <div class="tab-content" id="v-pills-tabContent">
-        <ng-container *ngIf="canDisplayAdministrativeSettings() else notAdminContent">
-          <div class="tab-pane fade show active" id="v-pills-board-settings" role="tabpanel"><app-board-settings></app-board-settings></div>
-          <div class="tab-pane fade" id="v-pills-members" role="tabpanel"><app-members-management></app-members-management></div>
-          <div class="tab-pane fade" id="v-pills-leave" role="tabpanel"><app-leave-board></app-leave-board></div>
-        </ng-container>
-        <ng-template #notAdminContent>
-          <div class="tab-pane fade show active" id="v-pills-leave" role="tabpanel"><app-leave-board></app-leave-board></div>
-        </ng-template>
+    <div class="row p-3">
+      <div class="col-md-3 order-md-2">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
+          <ng-container *ngIf="canDisplayAdministrativeSettings() else notAdminMenu">
+            <a class="nav-link active" id="v-pills-board-settings-tab" data-toggle="pill" href="#v-pills-board-settings" role="tab">Board settings</a>
+            <a class="nav-link" id="v-pills-members-tab" data-toggle="pill" href="#v-pills-members" role="tab">Members management</a>
+            <a class="nav-link" id="v-pills-leave-tab" data-toggle="pill" href="#v-pills-leave" role="tab">Leave board</a>
+          </ng-container>
+          <ng-template #notAdminMenu>
+            <a class="nav-link active" id="v-pills-leave-tab" data-toggle="pill" href="#v-pills-leave" role="tab">Leave board</a>
+          </ng-template>
+        </div>
+      </div>
+      <div class="col-md-9 order-md-1">
+        <div class="tab-content" id="v-pills-tabContent">
+          <ng-container *ngIf="canDisplayAdministrativeSettings() else notAdminContent">
+            <div class="tab-pane fade show active" id="v-pills-board-settings" role="tabpanel"><app-board-settings></app-board-settings></div>
+            <div class="tab-pane fade" id="v-pills-members" role="tabpanel"><app-members-management></app-members-management></div>
+            <div class="tab-pane fade" id="v-pills-leave" role="tabpanel"><app-leave-board></app-leave-board></div>
+          </ng-container>
+          <ng-template #notAdminContent>
+            <div class="tab-pane fade show active" id="v-pills-leave" role="tabpanel"><app-leave-board></app-leave-board></div>
+          </ng-template>
+        </div>
       </div>
     </div>
-  </div>
+  </ng-container>
+  <ng-template #loadingSpinner>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
 </div>
 

@@ -48,4 +48,8 @@ export class MembersListComponent implements OnInit {
         this.userService.getBoardMembers(this.boardId);
       });
   }
+
+  public dataLoaded(): boolean {
+    return this.userService.boardMembers != null;
+  }
 }

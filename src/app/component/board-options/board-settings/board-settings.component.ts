@@ -33,4 +33,11 @@ export class BoardSettingsComponent implements OnInit {
       });
   }
 
+  public dataLoaded(): boolean {
+    const boardNameLoaded = this.boardName != null;
+    const boardDescriptionLoaded = this.boardDescription != null;
+    return  boardNameLoaded
+    && boardDescriptionLoaded;
+  }
+
 }

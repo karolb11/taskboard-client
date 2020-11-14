@@ -9,26 +9,31 @@
       <button [routerLink]="'../invitations'" class="btn btn-outline-primary mb-1 d-none d-md-block">Browse invitations</button>
     </div>
     <div class="col-md-10 order-md-1">
-      <table class="table">
-        <thead class="thead-light">
-        <th scope="col">Board name</th>
-        <th scope="col">Board description</th>
-        <th scope="col"></th>
-        </thead>
-        <tbody>
-        <ng-container *ngFor="let board of boards">
-          <tr>
-            <td>{{board.name}}</td>
-            <td>{{board.description}}</td>
-            <td>
-              <a [routerLink]="board.id">
-                <button class="btn btn-outline-secondary" >Open</button>
-              </a>
-            </td>
-          </tr>
-        </ng-container>
-        </tbody>
-      </table>
+      <ng-container *ngIf="dataLoaded() else loadingSpinner">
+        <table class="table">
+          <thead class="thead-light">
+          <th scope="col">Board name</th>
+          <th scope="col">Board description</th>
+          <th scope="col"></th>
+          </thead>
+          <tbody>
+          <ng-container *ngFor="let board of boards">
+            <tr>
+              <td>{{board.name}}</td>
+              <td>{{board.description}}</td>
+              <td>
+                <a [routerLink]="board.id">
+                  <button class="btn btn-outline-secondary" >Open</button>
+                </a>
+              </td>
+            </tr>
+          </ng-container>
+          </tbody>
+        </table>
+      </ng-container>
+      <ng-template #loadingSpinner>
+        <app-loading-spinner></app-loading-spinner>
+      </ng-template>
     </div>
   </div>
 </div>

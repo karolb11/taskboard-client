@@ -28,4 +28,11 @@ export class BoardOptionsComponent implements OnInit {
       this.roleService.currentRole.name === GlobalRoleName.MOD;
   }
 
+  public dataLoaded(): boolean {
+    const currentLocalRoleLoaded = this.roleService.currentLocalRole != null;
+    const currentRoleLoaded = this.roleService.currentRole != null;
+    return currentRoleLoaded
+    && currentLocalRoleLoaded;
+  }
+
 }

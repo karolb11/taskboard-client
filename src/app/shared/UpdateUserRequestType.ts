@@ -1,0 +1,5 @@
+export enum UpdateUserRequestType {
+  UPDATE = 'UPDATE_DATA',
+  CHANGE_PASSWORD = 'CHANGE_PASSWORD',
+  DEACTIVATE = 'DEACTIVATE_ACCOUNT'
+}

@@ -76,6 +76,16 @@ export class TaskService {
     return this.httpClient.put<Task>(url, postData, options);
   }
 
+  public archiveTask(taskId: number): any {
+    const url = `${Consts.API_URL}/task/${taskId}/archive`;
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.post<Task>(url, null, options);
+  }
+
   getTaskPriorities() {
     const url = Consts.API_URL + '/task/priority';
     const options = {

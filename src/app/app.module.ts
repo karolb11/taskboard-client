@@ -42,6 +42,7 @@ import {CommonModule} from '@angular/common';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MyProfileComponent } from './component/my-profile/my-profile.component';
 import { CommentComponent } from './component/task-edit/comment-section/comment/comment.component';
+import { LoadingSpinnerComponent } from './component/loading-spinner/loading-spinner.component';
 
 
 @NgModule({
@@ -78,6 +79,7 @@ import { CommentComponent } from './component/task-edit/comment-section/comment/
     HomePageComponent,
     MyProfileComponent,
     CommentComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,

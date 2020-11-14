@@ -1,60 +1,89 @@
 <div class="shadow-sm bg-white rounded">
-  <div class="card-header d-flex justify-content-between">
-    <div>
-      <h1>Edit task</h1>
-      <span>Edit task parameters below</span>
+  <ng-container *ngIf="dataLoaded() else loadingSpinner">
+    <div class="card-header d-flex justify-content-between">
+      <div>
+        <h1>Edit task</h1>
+        <span>Edit task parameters below</span>
+      </div>
+      <div class="d-flex d-sm-block flex-column">
+        <app-subscribe-button></app-subscribe-button>
+        <button [routerLink]="'../'" class="btn btn-secondary mt-1 mt-sm-0 ml-sm-1">Back</button>
+      </div>
     </div>
-    <div class="d-flex d-sm-block flex-column">
-      <app-subscribe-button></app-subscribe-button>
-      <button [routerLink]="'../'" class="btn btn-secondary mt-1 mt-sm-0 ml-sm-1">Back</button>
-    </div>
-  </div>
-  <div class="p-3">
-    <div class="form-group">
-      <label for="name">Name:</label>
-      <input id="name" type="text" class="form-control" [(ngModel)]="task.name" placeholder="Title of the new task"/>
-    </div>
-    <div class="form-group">
-      <label for="description">Description:</label>
-      <textarea [(ngModel)]="task.description" class="form-control" id="description" rows="4" placeholder="Description of the new task"></textarea>
-    </div>
+    <div class="p-3">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input id="name" type="text" class="form-control" [(ngModel)]="task.name" placeholder="Title of the new task"/>
+      </div>
+      <div class="form-group">
+        <label for="description">Description:</label>
+        <textarea [(ngModel)]="task.description" class="form-control" id="description" rows="4" placeholder="Description of the new task"></textarea>
+      </div>
 
-    <label for="subTasks">Subtasks:</label>
-    <app-subtasks-list [subTasks]="task.subTasks" id="subTasks"></app-subtasks-list>
+      <label for="subTasks">Subtasks:</label>
+      <app-subtasks-list [subTasks]="task.subTasks" id="subTasks"></app-subtasks-list>
 
-    <div class="form-group">
-      <label for="priority">Priority:</label>
-      <select id="priority" class="form-control" [(ngModel)]="task.priority.id">
-        <ng-container *ngFor="let priority of taskPriorities">
-          <option [value]="priority.id">{{priority.name | transformPriorityName}}</option>
-        </ng-container>
-      </select>
+      <div class="form-group">
+        <label for="priority">Priority:</label>
+        <select id="priority" class="form-control" [(ngModel)]="task.priority.id">
+          <ng-container *ngFor="let priority of taskPriorities">
+            <option [value]="priority.id">{{priority.name | transformPriorityName}}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="state">State:</label>
+        <select id="state" class="form-control" [(ngModel)]="task.state.id">
+          <ng-container *ngFor="let state of taskStates">
+            <option [value]="state.id">{{state.name | transformTaskStateName}}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="user">Assigned User:</label>
+        <select id="user" class="form-control" [(ngModel)]="task.assignedUser.id">
+          <option [value]="null">None</option>
+          <ng-container *ngFor="let user of boardUsers">
+            <option [value]="user.id">{{user.name}}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div>
+        <label for="comment-section">Comments:</label>
+        <app-comment-section id="comment-section"></app-comment-section>
+      </div>
     </div>
-    <div class="form-group">
-      <label for="state">State:</label>
-      <select id="state" class="form-control" [(ngModel)]="task.state.id">
-        <ng-container *ngFor="let state of taskStates">
-          <option [value]="state.id">{{state.name | transformTaskStateName}}</option>
-        </ng-container>
-      </select>
+    <div class="pl-3 pr-3 pb-3 mt-3">
+      <button class="btn btn-primary mr-1" (click)="save()">Save</button>
+      <button *ngIf="isAbleToArchive()" type="button" class="btn btn-danger" data-toggle="modal" data-target="#taskArchiveModal">
+        Archive
+      </button>
     </div>
-    <div class="form-group">
-      <label for="user">Assigned User:</label>
-      <select id="user" class="form-control" [(ngModel)]="task.assignedUser.id">
-        <option [value]="null">None</option>
-        <ng-container *ngFor="let user of boardUsers">
-          <option [value]="user.id">{{user.name}}</option>
-        </ng-container>
-      </select>
-    </div>
-    <div>
-      <label for="comment-section">Comments:</label>
-      <app-comment-section id="comment-section"></app-comment-section>
-    </div>
-  </div>
-  <div class="pl-3 pr-3 pb-3">
-    <button class="btn btn-primary" (click)="save()">Save</button>
-  </div>
+  </ng-container>
+  <ng-template #loadingSpinner>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
 </div>
 
+
+<!-- Task Archive Modal -->
+<div class="modal fade" id="taskArchiveModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Please confirm</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        Are you sure you would like to archive this task?
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="archive()">Archive</button>
+      </div>
+    </div>
+  </div>
+</div>
 

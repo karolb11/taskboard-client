@@ -28,4 +28,7 @@ export class InvitationsListComponent implements OnInit {
       .subscribe(res => this.userService.getBoardInvitedUsers(this.boardId));
   }
 
+  public dataLoaded(): boolean {
+    return this.userService.boardInvitedUsers != null;
+  }
 }

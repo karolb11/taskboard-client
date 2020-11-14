@@ -19,8 +19,8 @@ export class MyBoardsComponent implements OnInit {
     });
   }
 
-  addBoard(board) {
-    this.boards.push(board);
+  public dataLoaded(): boolean {
+    return this.boards.length > 0;
   }
 
 }

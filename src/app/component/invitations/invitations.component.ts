@@ -37,4 +37,8 @@ export class InvitationsComponent implements OnInit {
     });
   }
 
+  public dataLoaded(): boolean {
+    return this.invitations != null;
+  }
+
 }

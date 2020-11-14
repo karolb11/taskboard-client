@@ -1,18 +1,24 @@
-<table class="table">
-  <thead class="thead-light">
-  <th scope="col">User</th>
-  <th scope="col">Role</th>
-  <th scope="col"></th>
-  </thead>
-  <tbody>
-  <ng-container *ngFor="let user of this.userService.boardInvitedUsers">
-    <tr>
-      <td>{{user.name}}</td>
-      <td>{{user.localRole.name | transformLocalRoleName}}</td>
-      <td>
-        <button class="btn btn-outline-warning" (click)="cancelInvitation(user.invitationId)">Cancel</button>
-      </td>
-    </tr>
-  </ng-container>
-  </tbody>
-</table>
+<ng-container *ngIf="dataLoaded() else loadingSpinner">
+  <table class="table">
+    <thead class="thead-light">
+    <th scope="col">User</th>
+    <th scope="col">Role</th>
+    <th scope="col"></th>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let user of this.userService.boardInvitedUsers">
+      <tr>
+        <td>{{user.name}}</td>
+        <td>{{user.localRole.name | transformLocalRoleName}}</td>
+        <td>
+          <button class="btn btn-outline-warning" (click)="cancelInvitation(user.invitationId)">Cancel</button>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</ng-container>
+<ng-template #loadingSpinner>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
+

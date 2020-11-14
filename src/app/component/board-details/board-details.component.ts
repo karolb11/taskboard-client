@@ -15,7 +15,6 @@ import {faCog} from '@fortawesome/free-solid-svg-icons';
 export class BoardDetailsComponent implements OnInit {
   id: number;
   board: BoardDetails;
-  localRole: LocalRole;
   plusIcon = faPlusSquare;
   optionsIcon = faCog;
 
@@ -24,11 +23,9 @@ export class BoardDetailsComponent implements OnInit {
   ngOnInit(): void {
     this.route.params.subscribe(params => this.id = params.id);
     this.boardService.getBoardById(this.id).subscribe(res => this.board = res);
-    this.boardService.getUsersLocalRoles(this.id).subscribe(res => this.localRole = res);
   }
 
-  isBoardOwner(): boolean {
-    return this.localRole.name === LocalRoleName.OWNER;
+  dataLoaded(): boolean {
+    return this.board != null;
   }
-
 }

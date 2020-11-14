@@ -1,25 +1,31 @@
-<table class="table">
-  <thead class="thead-light">
-  <th scope="col">Name</th>
-  <th scope="col">Role</th>
-  <th scope="col">Options</th>
-  </thead>
-  <tbody>
-  <ng-container *ngFor="let member of userService.boardMembers">
-    <tr>
-      <td>{{member.name}}</td>
-      <td>
-        <select id="role" class="form-control" [(ngModel)]="member.localRole.id">
-          <ng-container *ngFor="let role of roles">
-            <option [value]="role.id">{{role.name | transformLocalRoleName}}</option>
-          </ng-container>
-        </select>
-      </td>
-      <td>
-        <button class="btn btn-outline-primary mr-1" (click)="save(member.invitationId, member.localRole.id)">Save</button>
-        <button class="btn btn-outline-danger" (click)="delete(member.invitationId)">Remove</button>
-      </td>
-    </tr>
-  </ng-container>
-  </tbody>
-</table>
+<ng-container *ngIf="dataLoaded() else loadingSpinner">
+  <table class="table">
+    <thead class="thead-light">
+    <th scope="col">Name</th>
+    <th scope="col">Role</th>
+    <th scope="col">Options</th>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let member of userService.boardMembers">
+      <tr>
+        <td>{{member.name}}</td>
+        <td>
+          <select id="role" class="form-control" [(ngModel)]="member.localRole.id">
+            <ng-container *ngFor="let role of roles">
+              <option [value]="role.id">{{role.name | transformLocalRoleName}}</option>
+            </ng-container>
+          </select>
+        </td>
+        <td>
+          <button class="btn btn-outline-primary mr-1" (click)="save(member.invitationId, member.localRole.id)">Save</button>
+          <button class="btn btn-outline-danger" (click)="delete(member.invitationId)">Remove</button>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</ng-container>
+
+<ng-template #loadingSpinner>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

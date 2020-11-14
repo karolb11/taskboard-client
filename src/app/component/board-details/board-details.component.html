@@ -1,38 +1,43 @@
 <div class="shadow-sm bg-white rounded">
-  <div class="card-header">
-    <div class="row">
-      <div class="col-md-10">
-        <h1>{{board.name}}</h1>
-        <span>{{board.description}}</span>
+  <ng-container *ngIf="dataLoaded() else loadingSpinner">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-md-10">
+          <h1>{{board.name}}</h1>
+          <span>{{board.description}}</span>
+        </div>
+        <div class="col-md-2 d-flex flex-column">
+          <button [routerLink]="'create-task'" class="btn btn-outline-primary mb-1"><fa-icon [icon]="plusIcon" class="mr-1"></fa-icon>New task</button>
+          <button [routerLink]="'options'" class="btn btn-outline-primary mb-1"><fa-icon [icon]="optionsIcon" class="mr-1"></fa-icon>Options</button>
+        </div>
       </div>
-      <div class="col-md-2 d-flex flex-column">
-        <button [routerLink]="'create-task'" class="btn btn-outline-primary mb-1"><fa-icon [icon]="plusIcon" class="mr-1"></fa-icon>New task</button>
-        <button [routerLink]="'options'" class="btn btn-outline-primary mb-1"><fa-icon [icon]="optionsIcon" class="mr-1"></fa-icon>Options</button>
+    </div>
+    <div class="row pl-3 pr-3">
+      <div class="col-lg-4 border-right bg-light">
+        <div class="text-center m-2"><span>To be done</span></div>
+        <ng-container *ngFor="let task of board.toDo">
+          <app-task-widget [task]="task"></app-task-widget>
+        </ng-container>
+      </div>
+      <div class="col-lg-4 border-right bg-light">
+        <div class="text-center m-2"><span>In progress</span></div>
+        <ng-container *ngFor="let task of board.inProgress">
+          <app-task-widget [task]="task"></app-task-widget>
+        </ng-container>
+      </div>
+      <div class="col-lg-4 bg-light">
+        <div class="text-center m-2"><span>Done</span></div>
+        <ng-container *ngFor="let task of board.done">
+          <app-task-widget [task]="task"></app-task-widget>
+        </ng-container>
+      </div>
+      <div class="bg-light col-12">
+        <app-chat></app-chat>
       </div>
     </div>
-  </div>
-  <div class="row pl-3 pr-3">
-    <div class="col-lg-4 border-right bg-light">
-      <div class="text-center m-2"><span>To do</span></div>
-      <ng-container *ngFor="let task of board.toDo">
-        <app-task-widget [task]="task"></app-task-widget>
-      </ng-container>
-    </div>
-    <div class="col-lg-4 border-right bg-light">
-      <div class="text-center m-2"><span>In progress</span></div>
-      <ng-container *ngFor="let task of board.inProgress">
-        <app-task-widget [task]="task"></app-task-widget>
-      </ng-container>
-    </div>
-    <div class="col-lg-4 bg-light">
-      <div class="text-center m-2"><span>Done</span></div>
-      <ng-container *ngFor="let task of board.done">
-        <app-task-widget [task]="task"></app-task-widget>
-      </ng-container>
-    </div>
-    <div class="bg-light col-12">
-      <app-chat></app-chat>
-    </div>
-  </div>
+  </ng-container>
+  <ng-template #loadingSpinner>
+    <app-loading-spinner></app-loading-spinner>
+  </ng-template>
 </div>
 

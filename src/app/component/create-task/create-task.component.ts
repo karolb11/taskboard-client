@@ -64,12 +64,13 @@ export class CreateTaskComponent implements OnInit {
     });
   }
 
-  clear() {
-    this.name = null;
-    this.description = null;
-    this.priority = null;
-    this.state = null;
-    this.assignedUser = null;
+  public dataLoaded(): boolean {
+    const taskPrioritiesLoaded = this.taskPriorities != null;
+    const taskStatesLoaded = this.taskStates != null;
+    const boardUsersLoaded = this.boardUsers != null;
+    return taskPrioritiesLoaded
+      && taskStatesLoaded
+      && boardUsersLoaded;
   }
 
 }

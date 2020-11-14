@@ -8,6 +8,8 @@ import {TaskService} from '../../service/task.service';
 import {UserService} from '../../service/user.service';
 import {ToastrService} from 'ngx-toastr';
 import {RoleService} from '../../service/role.service';
+import {LocalRoleName} from '../../shared/LocalRoleName';
+import {GlobalRoleName} from '../../shared/GlobalRoleName';
 
 @Component({
   selector: 'app-task-edit',
@@ -55,10 +57,36 @@ export class TaskEditComponent implements OnInit {
     this.roleService.getCurrentLocalRole(this.boardId);
   }
 
-  save(): any {
+  save(): void {
     this.taskService.updateTask(this.task).subscribe(res => {
       this.toastr.success('Task modified', 'Saved');
       this.router.navigate([`/boards/${this.boardId}`]);
     });
+  }
+  archive(): void {
+    this.taskService.archiveTask(this.taskId).subscribe(res => {
+      this.toastr.success('Task archived', 'Saved');
+      this.router.navigate([`/boards/${this.boardId}`]);
+    });
+  }
+  public isAbleToArchive(): boolean {
+    if (this.roleService.currentLocalRole.name === LocalRoleName.OWNER ||
+      this.roleService.currentRole.name === GlobalRoleName.ADMIN ||
+      this.roleService.currentRole.name === GlobalRoleName.MOD) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  public dataLoaded(): boolean {
+    const taskLoaded = this.task != null;
+    const taskPrioritiesLoaded = this.taskPriorities != null;
+    const taskStatesLoaded = this.taskStates != null;
+    const boardUsersLoaded = this.boardUsers != null;
+    return taskLoaded
+      && taskPrioritiesLoaded
+      && taskStatesLoaded
+      && boardUsersLoaded;
   }
 }

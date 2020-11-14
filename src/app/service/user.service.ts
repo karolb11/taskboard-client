@@ -4,6 +4,8 @@ import {AuthService} from './auth.service';
 import {Consts} from '../shared/Consts';
 import {BoardUser} from '../shared/BoardUser';
 import {User} from '../shared/User';
+import {ApiResponse} from '../shared/ApiResponse';
+import {UpdateUserRequestType} from '../shared/UpdateUserRequestType';
 
 @Injectable({
   providedIn: 'root'
@@ -35,6 +37,7 @@ export class UserService {
     return this.httpClient.get<Array<BoardUser>>(url, options);
   }
   getBoardMembers(boardId: number) {
+    this.boardMembers = null;
     const url = `${Consts.API_URL}/board/${boardId}/members`;
     const options = {
       headers: new HttpHeaders()
@@ -53,5 +56,19 @@ export class UserService {
     };
     this.httpClient.get<Array<BoardUser>>(url, options)
       .subscribe(res => this.boardInvitedUsers = res.filter(m => !m.accepted));
+  }
+
+  deactivateAccount(accountId: number, currentPassword: string): any {
+    const url = `${Consts.API_URL}/user/${accountId}`;
+    const postData = {
+      type: UpdateUserRequestType.DEACTIVATE,
+      currentPassword
+    };
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.patch<ApiResponse>(url, postData, options);
   }
 }

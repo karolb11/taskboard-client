@@ -43,5 +43,8 @@ export class InviteUserComponent implements OnInit {
     this.localRoleId = 0;
   }
 
+  public dataLoaded(): boolean {
+    return this.roles != null;
+  }
 
 }
