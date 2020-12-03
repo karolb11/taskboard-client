@@ -15,11 +15,13 @@ import {LoginPageComponent} from './component/login-page/login-page.component';
 import {NoAuthGuard} from './auth/no-auth.guard';
 import {HomePageComponent} from './component/home-page/home-page.component';
 import {MyProfileComponent} from './component/my-profile/my-profile.component';
+import {AdminPanelComponent} from './component/admin-panel/admin-panel.component';
+import {AdminRoleGuard} from './auth/admin-role.guard';
 
 
 
 const routes: Routes = [
-  {path: '', component: HomePageComponent, canActivate: [AuthGuard]},
+  {path: '', redirectTo: '/boards', pathMatch: 'full', canActivate: [AuthGuard]},
   {path: 'signin', component: LoginPageComponent, canActivate: [NoAuthGuard]},
   {path: 'signup', component: RegistrationComponent, canActivate: [NoAuthGuard]},
   {path: 'invitations', component: InvitationsComponent, canActivate: [AuthGuard]},
@@ -30,7 +32,8 @@ const routes: Routes = [
   {path: 'boards/:id/options', component: BoardOptionsComponent, canActivate: [AuthGuard]},
   {path: 'boards/:id/:taskId', component: TaskEditComponent, canActivate: [AuthGuard]},
   {path: 'subscribedTasks', component: SubscribedTasksOverviewComponent, canActivate: [AuthGuard]},
-  {path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]}
+  {path: 'my-profile', component: MyProfileComponent, canActivate: [AuthGuard]},
+  {path: 'admin-panel', component: AdminPanelComponent, canActivate: [AuthGuard, AdminRoleGuard]}
 ];
 
 @NgModule({

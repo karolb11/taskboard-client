@@ -15,6 +15,7 @@ export class RegistrationComponent implements OnInit {
   username: string;
   fullName: string;
   password: string;
+  password2: string;
   email: string;
 
   constructor(private authService: AuthService,
@@ -25,16 +26,21 @@ export class RegistrationComponent implements OnInit {
   }
 
   public register(): void {
-    this.authService.registerAccount(this.username, this.fullName, this.email, this.password)
-      .subscribe(res => this.toastr.success(res.message),
-        err => {
-        console.log(err);
-        if (err.status === 409) {
-          this.toastr.error(err.error.message);
-        } else {
-            this.toastr.error('error');
-          }
-        });
+    if (this.password == this.password2) {
+      this.authService.registerAccount(this.username, this.fullName, this.email, this.password)
+        .subscribe(res => this.toastr.success(res.message),
+          err => {
+            console.log(err);
+            if (err.status === 409) {
+              this.toastr.error(err.error.message);
+            } else {
+              this.toastr.error('error');
+            }
+          });
+    }
+    else {
+      this.toastr.error('Passwords do not match!');
+    }
   }
 
 }

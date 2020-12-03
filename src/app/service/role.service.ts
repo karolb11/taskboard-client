@@ -30,6 +30,15 @@ export class RoleService {
       this.currentRole = res.role;
     });
   }
+  getGlobalRoles(): any {
+    const url = Consts.API_URL + '/global-role';
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.get<Array<Role>>(url, options);
+  }
   getLocalRoles(): any {
     const url = Consts.API_URL + '/local-role';
     const options = {

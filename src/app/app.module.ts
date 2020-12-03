@@ -43,6 +43,10 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import { MyProfileComponent } from './component/my-profile/my-profile.component';
 import { CommentComponent } from './component/task-edit/comment-section/comment/comment.component';
 import { LoadingSpinnerComponent } from './component/loading-spinner/loading-spinner.component';
+import { AdminPanelComponent } from './component/admin-panel/admin-panel.component';
+import { BoardsAdminViewComponent } from './component/admin-panel/boards-admin-view/boards-admin-view.component';
+import { UsersAdminPanelComponent } from './component/admin-panel/users-admin-panel/users-admin-panel.component';
+import { TransformGlobalRoleNamePipe } from './shared/transform-global-role-name.pipe';
 
 
 @NgModule({
@@ -80,6 +84,10 @@ import { LoadingSpinnerComponent } from './component/loading-spinner/loading-spi
     MyProfileComponent,
     CommentComponent,
     LoadingSpinnerComponent,
+    AdminPanelComponent,
+    BoardsAdminViewComponent,
+    UsersAdminPanelComponent,
+    TransformGlobalRoleNamePipe,
   ],
   imports: [
     BrowserModule,

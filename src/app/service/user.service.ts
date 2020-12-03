@@ -17,6 +17,16 @@ export class UserService {
   public boardMembers: Array<BoardUser>;
   public boardInvitedUsers: Array<BoardUser>;
 
+  getAllUsers(): any {
+    const url = `${Consts.API_URL}/user`;
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.get<User>(url, options);
+  }
+
   getMyUserDetails(): any {
     const url = `${Consts.API_URL}/user/me`;
     const options = {
@@ -70,5 +80,24 @@ export class UserService {
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
     return this.httpClient.patch<ApiResponse>(url, postData, options);
+  }
+  deactivateAccountByAdmin(accountId: number): any {
+    const url = `${Consts.API_URL}/user/${accountId}/deactivate`;
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.patch<ApiResponse>(url, accountId, options);
+  }
+
+  updateRole(userId: number, roleId: number): any {
+    const url = `${Consts.API_URL}/user/${userId}/role`;
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.patch<ApiResponse>(url, roleId, options);
   }
 }

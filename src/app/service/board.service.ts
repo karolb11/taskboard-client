@@ -14,8 +14,18 @@ export class BoardService {
 
   constructor(private httpClient: HttpClient, private authService: AuthService) {}
 
-  public getUsersBoard(): any {
+  public getAllBoards(): any {
     const url = Consts.API_URL + '/board';
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.get<Array<Board>>(url, options);
+  }
+
+  public getUsersBoard(): any {
+    const url = Consts.API_URL + '/board/my';
     const options = {
       headers: new HttpHeaders()
         .set('Content-Type',  `application/json`)
@@ -63,12 +73,22 @@ export class BoardService {
   }
 
   public getUsersLocalRoles(boarId: number): any {
-    const url = Consts.API_URL + '/local-role/my?boardId=' + boarId;
+    const url = `${Consts.API_URL}/local-role/my?boardId=${boarId}`;
     const options = {
       headers: new HttpHeaders()
         .set('Content-Type',  `application/json`)
         .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
     };
     return this.httpClient.get<LocalRole>(url, options);
+  }
+
+  public archiveBoard(boardId: number): any {
+    const url = `${Consts.API_URL}/board/${boardId}/archive`;
+    const options = {
+      headers: new HttpHeaders()
+        .set('Content-Type',  `application/json`)
+        .set('Authorization', 'Bearer ' + this.authService.getAccessToken())
+    };
+    return this.httpClient.post<LocalRole>(url,null, options);
   }
 }

@@ -1,0 +1,31 @@
+<ng-container *ngIf="dataLoaded() else loadingSpinner">
+  <table class="table">
+    <thead class="thead-light">
+    <th scope="col">Name</th>
+    <th scope="col">Role</th>
+    <th scope="col">Options</th>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let user of users">
+      <tr>
+        <td>{{user.name}}</td>
+        <td>
+          <select id="role" class="form-control" [(ngModel)]="user.role.id">
+            <ng-container *ngFor="let role of roles">
+              <option [value]="role.id">{{role.name | transformGlobalRoleName}}</option>
+            </ng-container>
+          </select>
+        </td>
+        <td>
+          <button class="btn btn-outline-primary mr-1" (click)="update(user.id, user.role.id)">Save</button>
+          <button class="btn btn-outline-warning" (click)="deactivate(user.id)">Deactivate</button>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</ng-container>
+
+<ng-template #loadingSpinner>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>

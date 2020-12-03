@@ -1,0 +1,25 @@
+<div class="shadow-sm bg-white rounded">
+  <div class="card-header">
+    <h1>Admin Panel</h1>
+    <span>Here you can manage all boards and users existing in the system</span>
+  </div>
+  <div class="row p-3">
+    <div class="col-12">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-link active" id="nav-boards-tab" data-toggle="tab" href="#nav-boards" role="tab">Boards</a>
+          <a class="nav-link" id="nav-users-tab" data-toggle="tab" href="#nav-users" role="tab">Users</a>
+        </div>
+      </nav>
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-boards" role="tabpanel">
+          <app-boards-admin-view></app-boards-admin-view>
+        </div>
+        <div class="tab-pane fade" id="nav-users" role="tabpanel">
+          <app-users-admin-panel></app-users-admin-panel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

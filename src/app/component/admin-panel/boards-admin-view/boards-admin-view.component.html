@@ -1,0 +1,26 @@
+<ng-container *ngIf="dataLoaded() else loadingSpinner">
+  <table class="table">
+    <thead class="thead-light">
+    <th scope="col">Board name</th>
+    <th scope="col">Board description</th>
+    <th scope="col"></th>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let board of boards">
+      <tr>
+        <td>{{board.name}}</td>
+        <td>{{board.description}}</td>
+        <td>
+          <a [routerLink]="'../boards/'+board.id">
+            <button class="btn btn-outline-secondary" >Open</button>
+          </a>
+            <button (click)="archiveBoard(board.id)" class="btn btn-outline-warning ml-3" >Archive</button>
+        </td>
+      </tr>
+    </ng-container>
+    </tbody>
+  </table>
+</ng-container>
+<ng-template #loadingSpinner>
+  <app-loading-spinner></app-loading-spinner>
+</ng-template>
